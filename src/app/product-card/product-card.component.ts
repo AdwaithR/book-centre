@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -21,5 +21,13 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
+  deleted(event) {
+    this.service.getProduct().subscribe(Response => {
+      this.prod = Response;
+      console.log(this.prod);
+    });
+  }
+
 }
+
 

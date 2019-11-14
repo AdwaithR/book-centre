@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ProductDescription } from '../model/product';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  actionUrl: string= environment.baseUrl;
+
 
   // private products: Array<ProductDescription> = [
   //   {
@@ -94,7 +97,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProduct() {
-    return this.http.get('http://localhost:3000/product');
+    return this.http.get(this.actionUrl + '/product');
   }
 
   getProductWithID() {

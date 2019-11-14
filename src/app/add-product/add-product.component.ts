@@ -1,7 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../service/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from 'selenium-webdriver/http';
 
 @Component({
@@ -19,8 +19,7 @@ export class AddProductComponent implements OnInit {
 
 
   constructor(
-    private productService: ProductService, private route: ActivatedRoute
-  ) { }
+    private productService: ProductService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -35,7 +34,7 @@ export class AddProductComponent implements OnInit {
     console.log(this.myForm);
     this.route.params.subscribe(params => {
       this.id = +params.id;
-      // tslint:disable-next-line:align
+
       console.log(params);
       this.productService.filterProduct(this.id).subscribe(Response => {
         this.data = Response;
@@ -57,13 +56,15 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    if(this.id){
-      this.productService.updateProduct(form.value, this.id).subscribe(data =>{console.log(data);
-      });
-    }
-    else{
-      this.productService.addProduct(this.myForm.value).subscribe(Response => { console.log(Response); });
+    if (this.id) {
+      this.productService.updateProduct(form.value, this.id).subscribe(data => {console.log(data); });
+      alert('Product updateded successfully');
+      this.router.navigate(['']);
 
+    } else {
+      this.productService.addProduct(this.myForm.value).subscribe(Response => {console.log(Response); });
+      alert('Product added successfully');
+      this.router.navigate(['']);
     }
 
 
@@ -71,9 +72,10 @@ export class AddProductComponent implements OnInit {
     console.log(this.myForm.value);
   }
 
-  delete(){
-    this.productService.deleteProduct(this.id).subscribe(data =>{console.log(data);});
-
+  delete() {
+    this.productService.deleteProduct(this.id).subscribe(data => {console.log(data); });
+    alert('Product deleted successfully');
+    this.router.navigate(['']);
   }
 
 }

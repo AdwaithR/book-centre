@@ -2,13 +2,14 @@
   <img [src]="product.imageUrl" class=" card-img" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-price">${{product.price}}</p>
+    <p class="card-price">RS{{product.price}}/-</p>
     <p class="card-text">{{product.description}}</p>
     <button href="#" class="btn btn-primary" routerLink="/addcart" routerLinkActive="active">Add Cart</button>
-    <button href="#" class="btn btn-danger" [routerLink]="['/productdetail', product.id]"
+    <button href="#" class="btn btn-secondary" [routerLink]="['/productdetail', product.id]"
       routerLinkActive="active">Detail</button>
-      <button href="#" class="btn btn-danger" [routerLink]="['/addproduct', product.id]"
+      <button href="#" class="btn btn-light" [routerLink]="['/addproduct', product.id]"
       routerLinkActive="active">Edit</button>
+      <button type="submit" class="btn btn-danger" (click)="delete(product.id)">Delete</button>
 
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" *ngIf='prod'>
     <div *ngFor="let item of prod">
-      <app-productdetail [product]='item'></app-productdetail>
+      <app-productdetail [product]='item' (isDeleted)=deleted($event) ></app-productdetail>
     </div>
   </div>
 </div>

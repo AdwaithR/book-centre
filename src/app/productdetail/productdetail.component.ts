@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-productdetail',
@@ -7,13 +8,32 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductdetailComponent implements OnInit {
 
-  @Input() product;
+  @Input()
+  product: any;
+  router: any;
+  ProductService: any;
 
 
+  @Output()
+  isDeleted = new EventEmitter();
 
-  constructor() { }
+  constructor(private _productService: ProductService) { }
 
-  ngOnInit() {
+delete(id) {
+    this._productService.deleteProduct(id).subscribe((data: any) => {
+      console.log(data);
+      const dataObj = {
+      };
+      this.isDeleted.emit(data); });
+    alert('Product deleted successfully');
+  }
+
+id(id: any) {
+    throw new Error('Method not implemented.');
+  }
+
+
+ngOnInit() {
   }
 
 }
