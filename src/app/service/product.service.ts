@@ -105,18 +105,18 @@ export class ProductService {
   }
 
   addProduct(product: ProductDescription) {
-    return this.http.post('http://localhost:3000/product', product);
+    return this.http.post(this.actionUrl + '/product', product);
   }
 
   filterProduct(id){
-    return this.http.get('http://localhost:3000/product/' + id)
+    return this.http.get(this.actionUrl + '/product/' + id)
    }
 
    updateProduct(form,id){
-     return this.http.put('http://localhost:3000/product/' + id, form)
+     return this.http.put(this.actionUrl + '/product/' + id, form)
    }
 
    deleteProduct(id){
-    return this.http.delete('http://localhost:3000/product/' + id)
+    return this.http.delete(this.actionUrl + '/product/' + id)
   }
 }

@@ -2,7 +2,7 @@
   <img [src]="product.imageUrl" class=" card-img" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-price">RS{{product.price}}/-</p>
+    <p class="card-price">Rs {{product.price}}/-</p>
     <p class="card-text">{{product.description}}</p>
     <button href="#" class="btn btn-primary" routerLink="/addcart" routerLinkActive="active">Add Cart</button>
     <button href="#" class="btn btn-secondary" [routerLink]="['/productdetail', product.id]"
